@@ -17,6 +17,7 @@
 		<li>{{name}} {{borrowed}} {{awesome}} borrowed by {{borrowerId}}</li>
 	{{/each}}
 	</ul>
+	{{> addsomethingiown}}
 </template>
 
 <template name="iveborrowed">
@@ -26,4 +27,12 @@
 		<li>{{name}} owned by {{ownerId}}</li>
 	{{/each}}
 </ul>
+</template>
+
+<template name="addsomethingiown">
+<h4>Add another item you own so others can borrow your sweet goods</h4>
+<form class="addsomethingiown">
+	<input type="text" name="itemName" placeholder="name of the thing you own" />
+	<input type="submit">
+</form>
 </template>

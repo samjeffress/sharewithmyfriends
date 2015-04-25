@@ -15,6 +15,20 @@ if (Meteor.isClient) {
       return Items.find({ownerId:"me"});
     }
   });
+
+  Template.addsomethingiown.events({
+    "submit .addsomethingiown" : function(event){
+      var itemName = event.target.itemName.value; 
+      Items.insert({
+        name: itemName,
+        createdAt: new Date(), // current time
+        ownerId:"me"
+      });
+      event.target.itemName.value = "";
+      return false;
+
+    }
+  });
 }
 
 if (Meteor.isServer) {
