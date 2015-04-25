@@ -1,17 +1,18 @@
+Items = new Mongo.Collection("items");
+
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+  Template.iveborrowed.helpers({
+    items: function(){
+      return Items.find({borrowerId:"me"});
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  Template.iown.helpers({
+    items: function(){
+      return Items.find({ownerId:"me"});
     }
   });
 }

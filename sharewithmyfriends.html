@@ -1,14 +1,29 @@
 <head>
-  <title>sharewithmyfriends</title>
+  <title>Share With My Friends</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+  <h1>Welcome to Share With My Friends!</h1>
+  <p>We want to make it easy to borrow things off your facebook friends, and track who's borrowed what of yours. </p>
+  {{> iown}}
+  {{> iveborrowed}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+
+<template name="iown">
+<h3>Stuff I Own</h3>
+	<ul>
+	{{#each items}}
+		<li>{{name}} {{borrowed}} {{awesome}} borrowed by {{borrowerId}}</li>
+	{{/each}}
+	</ul>
+</template>
+
+<template name="iveborrowed">
+<h3>Stuff I've Borrowed</h3>
+<ul>
+	{{#each items}}
+		<li>{{name}} owned by {{ownerId}}</li>
+	{{/each}}
+</ul>
 </template>
