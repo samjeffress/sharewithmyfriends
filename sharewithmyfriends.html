@@ -14,7 +14,7 @@
 <h3>Stuff I Own</h3>
 	<ul>
 	{{#each items}}
-		<li>{{name}} {{borrowed}} {{awesome}} borrowed by {{borrowerId}}</li>
+		<li>{{name}} {{#if borrowerId}} borrowed by {{borrowerId}}{{/if}}</li>
 	{{/each}}
 	</ul>
 	{{> addsomethingiown}}
