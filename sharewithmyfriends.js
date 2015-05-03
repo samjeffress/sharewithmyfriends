@@ -6,13 +6,13 @@ if (Meteor.isClient) {
 
   Template.iveborrowed.helpers({
     items: function(){
-      return Items.find({borrowerId:"me"});
+      return Items.find({borrowerId:Meteor.user().username});
     }
   });
 
   Template.iown.helpers({
     items: function(){
-      return Items.find({ownerId:"me"});
+      return Items.find({ownerId:Meteor.user().username});
     }
   });
 
@@ -22,13 +22,17 @@ if (Meteor.isClient) {
       Items.insert({
         name: itemName,
         createdAt: new Date(), // current time
-        ownerId:"me"
+        ownerId: Meteor.user().username 
       });
       event.target.itemName.value = "";
       return false;
 
     }
   });
+
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
+});
 }
 
 if (Meteor.isServer) {
