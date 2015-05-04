@@ -9,6 +9,7 @@
   {{#if currentUser}}
 	  {{> iown}}
 	  {{> iveborrowed}}
+	  {{> otherpeoplesthings}}
   {{else}}
   	<p>you should sign in (or sign up).</p>
   {{/if}}
@@ -40,4 +41,13 @@
 	<input type="text" name="itemName" placeholder="name of the thing you own" />
 	<input type="submit">
 </form>
+</template>
+
+<template name="otherpeoplesthings">
+<h4>Stuff other people own</h4>
+<ul>
+	{{#each items}}
+		<li>{{ownerId}} own's {{name}}</li>
+	{{/each}}
+</ul>
 </template>

@@ -16,6 +16,13 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.otherpeoplesthings.helpers({
+    items: function(){
+      // return Items.find({ownerId:Meteor.user().username});
+      return Items.find({ownerId:{$ne:Meteor.user().username}});
+    }
+  });
+
   Template.addsomethingiown.events({
     "submit .addsomethingiown" : function(event){
       var itemName = event.target.itemName.value; 
