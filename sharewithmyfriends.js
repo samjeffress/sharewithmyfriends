@@ -18,9 +18,15 @@ if (Meteor.isClient) {
 
   Template.otherpeoplesthings.helpers({
     items: function(){
-      // return Items.find({ownerId:Meteor.user().username});
-      return Items.find({ownerId:{$ne:Meteor.user().username}});
+      return Items.find({ownerId:{$ne:Meteor.user().username}, $or:[{borrowerId:{$exists:false}},{borrowerId:null},{borrowerId:''}]});
     }
+  });
+
+  Template.otherpeoplesthings.events({
+    "submit .otherpeoplesthings" : function(event){
+      
+      Items.update(this._id, {$set: {borrowerId: Meteor.user().username}});
+    } 
   });
 
   Template.addsomethingiown.events({

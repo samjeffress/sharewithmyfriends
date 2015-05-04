@@ -47,7 +47,12 @@
 <h4>Stuff other people own</h4>
 <ul>
 	{{#each items}}
-		<li>{{ownerId}} own's {{name}}</li>
+		<li>{{ownerId}} own's {{name}}
+			<form class="otherpeoplesthings">
+				<input type="hidden" name="itemId" value="{{_id}}"/>
+				<input type="submit" value="pick it"/>
+			</form>
+		</li>
 	{{/each}}
 </ul>
 </template>
