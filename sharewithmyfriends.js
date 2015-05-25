@@ -10,6 +10,12 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.iveborrowed.events({
+    "click li .return_item": function(event){
+      Items.update(this._id, {$set: {borrowerId:null}});
+    }
+  });
+
   Template.iown.helpers({
     items: function(){
       return Items.find({ownerId:Meteor.user().username});
@@ -24,13 +30,14 @@ if (Meteor.isClient) {
 
   Template.otherpeoplesthings.events({
     "submit .otherpeoplesthings" : function(event){
-      
+      event.preventDefault();
       Items.update(this._id, {$set: {borrowerId: Meteor.user().username}});
     } 
   });
 
   Template.addsomethingiown.events({
     "submit .addsomethingiown" : function(event){
+      event.preventDefault();
       var itemName = event.target.itemName.value; 
       Items.insert({
         name: itemName,

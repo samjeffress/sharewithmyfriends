@@ -30,7 +30,7 @@
 <h3>Stuff I've Borrowed</h3>
 <ul>
 	{{#each items}}
-		<li>{{name}} owned by {{ownerId}}</li>
+		<li>{{name}} owned by {{ownerId}} - <button type="button" class="return_item" value="{{_id}}">Return</button></li>
 	{{/each}}
 </ul>
 </template>
