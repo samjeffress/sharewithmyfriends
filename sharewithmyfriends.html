@@ -1,58 +1,78 @@
 <head>
   <title>Share With My Friends</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
 </head>
 
 <body>
-{{> loginButtons}}
-  <h1>Welcome to Share With My Friends!</h1>
-  <p>We want to make it easy to borrow things off your facebook friends, and track who's borrowed what of yours. </p>
-  {{#if currentUser}}
-	  {{> iown}}
-	  {{> iveborrowed}}
-	  {{> otherpeoplesthings}}
-  {{else}}
-  	<p>you should sign in (or sign up).</p>
-  {{/if}}
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<div class="container">
+	{{> loginButtons}}
+	  <h1>Welcome to Share With My Friends!</h1>
+	  <p>We want to make it easy to borrow things off your facebook friends, and track who's borrowed what of yours. </p>
+	  {{#if currentUser}}
+		  {{> iown}}
+		  {{> iveborrowed}}
+		  {{> otherpeoplesthings}}
+	  {{else}}
+	  	<p>you should sign in (or sign up).</p>
+	  {{/if}}
+  </div>
 </body>
 
 
 <template name="iown">
-<h3>Stuff I Own</h3>
-	<ul>
-	{{#each items}}
-		<li>{{name}} {{#if borrowerId}} borrowed by {{borrowerId}}{{/if}}</li>
-	{{/each}}
-	</ul>
-	{{> addsomethingiown}}
+<div class="row">
+	<h3>Stuff I Own</h3>
+		<ul>
+		{{#each items}}
+			<li>{{name}} {{#if borrowerId}} borrowed by {{borrowerId}}{{/if}}</li>
+		{{/each}}
+		</ul>
+		{{> addsomethingiown}}
+</div>
 </template>
 
 <template name="iveborrowed">
-<h3>Stuff I've Borrowed</h3>
-<ul>
-	{{#each items}}
-		<li>{{name}} owned by {{ownerId}} - <button type="button" class="return_item" value="{{_id}}">Return</button></li>
-	{{/each}}
-</ul>
+<div class="row">
+	<h3>Stuff I've Borrowed</h3>
+	<ul>
+		{{#each items}}
+			<li>{{name}} owned by {{ownerId}} - <button type="button" class="return_item btn btn-default" value="{{_id}}">Return</button></li>
+		{{/each}}
+	</ul>
+</div>
 </template>
 
 <template name="addsomethingiown">
-<h4>Add another item you own so others can borrow your sweet goods</h4>
-<form class="addsomethingiown">
-	<input type="text" name="itemName" placeholder="name of the thing you own" />
-	<input type="submit">
-</form>
+<div class="row">
+	<h4>Add another item you own so others can borrow your sweet goods</h4>
+	<form class="addsomethingiown navbar-form navbar-left">
+		<div class="form-group">
+			<input type="text" class="form-control" name="itemName" placeholder="name of the thing you own" />
+			<input type="submit" class="btn btn-default"/>
+		</div>
+	</form>
+</div>
 </template>
 
 <template name="otherpeoplesthings">
-<h4>Stuff other people own</h4>
-<ul>
-	{{#each items}}
-		<li>{{ownerId}} own's {{name}}
-			<form class="otherpeoplesthings">
-				<input type="hidden" name="itemId" value="{{_id}}"/>
-				<input type="submit" value="pick it"/>
-			</form>
-		</li>
-	{{/each}}
-</ul>
+<div class="row">
+	<h3>Stuff other people own</h3>
+	<ul>
+		{{#each items}}
+			<li>
+				<form class="otherpeoplesthings navbar-form form-inline">
+					{{ownerId}} own's {{name}} <input type="submit" class="btn btn-default" value="Borrow"/>
+				</form>
+			</li>
+		{{/each}}
+	</ul>
+</div>
 </template>
