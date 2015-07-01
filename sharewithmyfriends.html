@@ -30,9 +30,13 @@
 <template name="iown">
 <div class="row">
 	<h3>Stuff I Own</h3>
-		<ul>
+		<ul class="list-group">
 		{{#each items}}
-			<li>{{name}} {{#if borrowerId}} borrowed by {{borrowerId}}{{/if}}</li>
+			{{#if borrowerId}}
+			<li class="list-group-item list-group-item-danger">{{name}} borrowed by {{borrowerId}}</li>
+			{{else}}
+			<li class="list-group-item">{{name}}</li>
+			{{/if}}
 		{{/each}}
 		</ul>
 		{{> addsomethingiown}}
@@ -42,9 +46,9 @@
 <template name="iveborrowed">
 <div class="row">
 	<h3>Stuff I've Borrowed</h3>
-	<ul>
+	<ul class="list-group">
 		{{#each items}}
-			<li>{{name}} owned by {{ownerId}} - <button type="button" class="return_item btn btn-default" value="{{_id}}">Return</button></li>
+			<li class="list-group-item">{{name}} owned by {{ownerId}} - <button type="button" class="return_item btn btn-default" value="{{_id}}">Return</button></li>
 		{{/each}}
 	</ul>
 </div>
@@ -65,9 +69,9 @@
 <template name="otherpeoplesthings">
 <div class="row">
 	<h3>Stuff other people own</h3>
-	<ul>
+	<ul class="list-group">
 		{{#each items}}
-			<li>
+			<li class="list-group-item">
 				<form class="otherpeoplesthings navbar-form form-inline">
 					{{ownerId}} own's {{name}} <input type="submit" class="btn btn-default" value="Borrow"/>
 				</form>
